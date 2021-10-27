@@ -1,0 +1,8 @@
+{
+    "env":{
+        "MONGO_VEL":"velkumar",
+        "MONGO_PASSWORD":"Pulsar220",
+        "MONGO_DEFAULT_DATABASE":"Shop",
+        "STRIPE_KEY":"sk_test_51Jd7c8SEhvpSeIKkEBRTq0hBfeyu2zynHhuoHYhIGqoOmEydsO7gcGPVdKVuNkvSY2yKFnWwnYMoWgj8XMPQ2SSS00lJ5N4Q53"
+    }
+}

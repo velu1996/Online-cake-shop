@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport(
   sendgridTransport({
     auth: {
       api_key:
-        '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'
+        `${process.env.MAIL_KEY}`
     }
   })
 );
@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport(
 exports.getLogin = (req, res, next) => {
   if(req.user === undefined){
     adminUser1 = false;
-  }else if(req.user.email = 'test@mail.com'){
+  }else if(req.user.email = `${prcess.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }else{
     adminUser1 = false;
@@ -48,7 +48,7 @@ exports.getLogin = (req, res, next) => {
 exports.getSignup = (req, res, next) => {
   if(req.user === undefined){
     adminUser1 = false;
-  }else if(req.user.email = 'test@mail.com'){
+  }else if(req.user.email = `${prcess.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }else{
     adminUser1 = false;
@@ -78,7 +78,7 @@ exports.postLogin = (req, res, next) => {
   const password = req.body.password;
   if(req.user === undefined){
     adminUser1 = false; 
-  }else if(req.user.email === 'test@mail.com'){
+  }else if(req.user.email === `${prcess.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }
 
@@ -109,7 +109,7 @@ exports.postLogin = (req, res, next) => {
             password: password
           },
           validationErrors: [],
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
           
         });
       }
@@ -133,7 +133,7 @@ exports.postLogin = (req, res, next) => {
               password: password
             },
             validationErrors: [],
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
             
           });
         })
@@ -185,7 +185,7 @@ exports.postSignup = (req, res, next) => {
       res.redirect('/login');
       return transporter.sendMail({
         to: email,
-        from: 'velu196@gmail.com',
+        from:`${process.env.MY_EMAIL}`,
         subject: 'Signup succeeded!',
         html: '<h1>You successfully signed up!</h1>'
       });
@@ -215,7 +215,7 @@ exports.getReset = (req, res, next) => {
     path: '/reset',
     pageTitle: 'Reset Password',
     errorMessage: message,
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
     
   });
 };
@@ -241,7 +241,7 @@ exports.postReset = (req, res, next) => {
         res.redirect('/');
         transporter.sendMail({
           to: req.body.email,
-          from: 'velu196@gmail.com',
+          from: `${process.env.MY_EMAIL}`,
           subject: 'Password reset',
           html: `
             <p>You requested a password reset</p>
@@ -273,7 +273,7 @@ exports.getNewPassword = (req, res, next) => {
         errorMessage: message,
         userId: user._id.toString(),
         passwordToken: token,
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
         
       });
     })

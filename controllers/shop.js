@@ -4,7 +4,7 @@ const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 const PDFDocument = require('pdfkit');
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 3;
 let adminUser1 = false;
 
 const Product = require('../models/product');
@@ -15,7 +15,7 @@ exports.getProducts = (req, res, next) => {
   let totalItems;
   if(req.user === undefined){
     adminUser1 = false; 
-  }else if(req.user.email === 'test@mail.com'){
+  }else if(req.user.email === `${process.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }
 
@@ -49,7 +49,7 @@ exports.getProducts = (req, res, next) => {
 exports.getProduct = (req, res, next) => {
   if(req.user === undefined){
     adminUser1 = false; 
-  }else if(req.user.email === 'test@mail.com'){
+  }else if(req.user.email === `${process.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }
   const prodId = req.params.productId;
@@ -73,7 +73,7 @@ exports.getProduct = (req, res, next) => {
 exports.getIndex = (req, res, next) => {
   if(req.user === undefined){
     adminUser1 = false; 
-  }else if(req.user.email === 'test@mail.com'){
+  }else if(req.user.email === `${process.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }
   const page = +req.query.page ||  1;
@@ -116,7 +116,7 @@ exports.getCart = (req, res, next) => {
         path: '/cart',
         pageTitle: 'Your Cart',
         products: products,
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${process.env.ADMIN_MAIL}` : false
         
       });
     })
@@ -221,7 +221,7 @@ exports.getCheckout = (req,res,next)=>{
         products: products,
         totalSum:total,
         sessionId:session.id,
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${process.env.ADMIN_MAIL}` : false
         
       });
     })  
@@ -239,7 +239,7 @@ exports.getOrders = (req, res, next) => {
         path: '/orders',
         pageTitle: 'Your Orders',
         orders: orders,
-    adminUser: true ? req.user.email === 'test@mail.com' : false
+    adminUser: true ? req.user.email === `${process.env.ADMIN_MAIL}` : false
         
       });
     })

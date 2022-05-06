@@ -221,6 +221,7 @@ exports.getCheckout = (req,res,next)=>{
         products: products,
         totalSum:total,
         sessionId:session.id,
+        key:process.env.STRIPE_PUBLIC_KEY,
     adminUser: true ? req.user.email === `${process.env.ADMIN_MAIL}` : false
         
       });

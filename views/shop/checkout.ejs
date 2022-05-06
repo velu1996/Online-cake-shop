@@ -17,11 +17,11 @@
             <h2>Total:₹<%= totalSum %></h2>
         </div>
         <div class="centered">
-            <button id="order-btn" class="btn">Order
+            <button id="order-btn" class="btn">Pay Online
             </button>
             <script src=https://js.stripe.com/v3/></script>
             <script>
-                var stripe = Stripe('pk_test_51Jd7c8SEhvpSeIKktO3FUWZWcd9K3hcdmZJoPuHBZWq0kSjwkXCs5oioKMCIEBe547XEhPGkw2aZvzGEUEQx2Emf00M2U78w0D');
+                var stripe = Stripe('<%= key %>');
                 var orderBtn = document.getElementById('order-btn');
                 orderBtn.addEventListener('click',()=>{
                     stripe.redirectToCheckout({

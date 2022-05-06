@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -17,7 +18,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-  `mongodb+srv://${process.env.MONGO_VEL}:${process.env.MONGO_PASSWORD}@cluster0.g8frs.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?w=majority`;
+  `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.g8frs.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?w=majority`;
 
 const app = express();
 const store = new MongoDBStore({
@@ -59,7 +60,14 @@ const accessLogStream = fs.createWriteStream(
   {flag:'a'}
 );
 
-app.use(helmet());
+// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
+
 app.use(compression());
 app.use(morgan('combined',{stream:accessLogStream}));
 

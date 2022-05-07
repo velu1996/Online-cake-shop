@@ -1,4 +1,4 @@
 node_modules
-*.log
+access.log
 .env
 data/*

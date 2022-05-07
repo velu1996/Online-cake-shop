@@ -215,7 +215,7 @@ exports.getReset = (req, res, next) => {
     path: '/reset',
     pageTitle: 'Reset Password',
     errorMessage: message,
-    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
+    adminUser:  false
     
   });
 };

@@ -1,7 +1,7 @@
 {
   "name": "cake-shop-velu",
   "version": "1.0.0",
-  "description": "cake-shop-velu",
+  "description": "cake-shop",
   "main": "app.js",
   "engines": {
     "node": "15.9.0"

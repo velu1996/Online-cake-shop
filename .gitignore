@@ -2,3 +2,4 @@ node_modules
 access.log
 .env
 data/*
+*.log

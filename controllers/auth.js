@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport(
 exports.getLogin = (req, res, next) => {
   if(req.user === undefined){
     adminUser1 = false;
-  }else if(req.user.email = `${prcess.env.ADMIN_MAIL}`){
+  }else if(req.user.email = `${process.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }else{
     adminUser1 = false;
@@ -48,7 +48,7 @@ exports.getLogin = (req, res, next) => {
 exports.getSignup = (req, res, next) => {
   if(req.user === undefined){
     adminUser1 = false;
-  }else if(req.user.email = `${prcess.env.ADMIN_MAIL}`){
+  }else if(req.user.email = `${process.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }else{
     adminUser1 = false;
@@ -78,7 +78,7 @@ exports.postLogin = (req, res, next) => {
   const password = req.body.password;
   if(req.user === undefined){
     adminUser1 = false; 
-  }else if(req.user.email === `${prcess.env.ADMIN_MAIL}`){
+  }else if(req.user.email === `${process.env.ADMIN_MAIL}`){
     adminUser1 = true;
   }
 
@@ -109,7 +109,7 @@ exports.postLogin = (req, res, next) => {
             password: password
           },
           validationErrors: [],
-    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
+    adminUser: true ? req.user.email === `${process.env.ADMIN_MAIL}` : false
           
         });
       }
@@ -133,7 +133,7 @@ exports.postLogin = (req, res, next) => {
               password: password
             },
             validationErrors: [],
-    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
+    adminUser: true ? email === `${process.env.ADMIN_MAIL}` : false
             
           });
         })
@@ -273,7 +273,7 @@ exports.getNewPassword = (req, res, next) => {
         errorMessage: message,
         userId: user._id.toString(),
         passwordToken: token,
-    adminUser: true ? req.user.email === `${prcess.env.ADMIN_MAIL}` : false
+    adminUser: true ? req.user.email === `${process.env.ADMIN_MAIL}` : false
         
       });
     })
